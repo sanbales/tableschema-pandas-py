@@ -4,6 +4,8 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+from packaging import version
+
 import six
 import json
 import isodate
@@ -11,7 +13,11 @@ import datetime
 import tableschema
 import numpy as np
 import pandas as pd
-import pandas.core.common as pdc
+
+if version.parse(pd.__version__) >= version.parse("0.24"):
+    import pandas.api.types as pdc
+else:
+    import pandas.core.common as pdc
 
 
 # Module API
